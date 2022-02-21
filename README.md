@@ -295,12 +295,12 @@ const dsT2m = gdal.open('AROME_T2m_10.tiff'));
 const dsD2m = gdal.open('AROME_D2m_10.tiff'));
 
 const dsCloudBase = gdal.open('CLOUDBASE.tiff', 'w', 'GTiff',
-dsT2m.rasterSize.x, dsT2m.rasterSize.y, 1, gdal.GDT_Float64);
+   dsT2m.rasterSize.x, dsT2m.rasterSize.y, 1, gdal.GDT_Float64);
 
 const mux = new gdal.RasterMuxStream({
-T2m: dsT2m.bands.get(1).pixels.createReadStream(),
-D2m: dsD2m.bands.get(1).pixels.createReadStream()
-});
+   T2m: dsT2m.bands.get(1).pixels.createReadStream(),
+   D2m: dsD2m.bands.get(1).pixels.createReadStream()
+ });
 const ws = dsCloudBase.bands.get(1).pixels.createWriteStream();
 
 // Espy's estimation for cloud base height (lifted condensation level)
